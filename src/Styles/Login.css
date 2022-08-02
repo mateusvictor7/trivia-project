@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap') ;
+
+
+body {
+  background-color: #1c1c1c;
+}
+
+.context-input, .context-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.btn-play, .btn-settings {
+  background-color: green;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 5px;
+  text-align: center;
+  width: 150px;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-around;
+}
+
+.logo {
+  margin: 0;
+  margin-top: 15%;
+  width: 144px;
+}
+
+.input-login {
+  border-radius: 5px;
+  height: 20px;
+  margin: 3px;
+  width: 200px;
+}
+
+.insert-login {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+::placeholder {
+  color: rgb(49, 49, 49);
+  text-align: center;
+}
+
+.btn-play:hover, .btn-settings:hover {
+  animation: fluid 5s ease-in-out infinite;
+  background: linear-gradient(-45deg, #e75, #e73c7e, #23a6d5, #008b45, #008b00, #005800);
+  background-size: 400% 400%;
+  border: 2px solid #1f1f1f;
+  color: white;
+  position: relative;
+}
+
+@keyframes fluid {
+
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+
+}
+
+@media screen and ( min-width : 765px ) {
+
+  .context-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
+
+  .context-input > * {
+    height: 25px;
+    width: 250px;
+  }
+
+  .container {
+    justify-content: center;
+  }
+
+  .insert-login, .context-button {
+    align-content: space-between;
+    width: 335px;
+  }
+
+  .context-button > * > button {
+    height: 35px;
+    width: 150px;
+  }
+
+  .title {
+    font-size: 4.5rem;
+  }
+}

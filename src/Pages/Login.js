@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { setUser } from '../Actions';
 import { setToken } from '../Actions/setLogin';
 import SettingsButton from '../Components/SettingsButton';
+import TriviaLogo216 from '../Components/TriviaLogoSizes/TriviaLogo216';
+import TriviaLogo144 from '../Components/TriviaLogoSizes/TriviaLogo144';
+import TriviaLogo96 from '../Components/TriviaLogoSizes/TriviaLogo96';
 
 class Login extends Component {
   constructor(props) {
@@ -25,6 +28,18 @@ class Login extends Component {
     });
   }
 
+  sizeScreen() {
+    const base = 765;
+    const top = 1100;
+    if (window.screen.width > top) {
+      return <TriviaLogo216 className="logo" />;
+    }
+    if (window.screen.width < top && window.screen.width > base) {
+      return <TriviaLogo144 className="logo" />;
+    }
+    return <TriviaLogo96 className="logo" />;
+  }
+
   validateLogin() {
     const { name, email } = this.state;
     const validateName = name.length > 1;
@@ -42,35 +57,46 @@ class Login extends Component {
   render() {
     const { name, email } = this.state;
     return (
-      <div>
-        <SettingsButton />
-        <h2>
-          Trivia
+      <div className="container">
+        <h2 className="title">
+          { this.sizeScreen() }
         </h2>
-        <input
-          type="text"
-          name="name"
-          value={ name }
-          data-testid="input-player-name"
-          onChange={ this.handleChange }
-        />
-        <input
-          name="email"
-          type="text"
-          value={ email }
-          data-testid="input-gravatar-email"
-          onChange={ this.handleChange }
-        />
-        <Link to="/trivia">
+        <div className="insert-login">
+          <div className="context-input">
+              <input
+              type="text"
+              name="name"
+              value={ name }
+              className="input-login"
+              placeholder="Name"
+              data-testid="input-player-name"
+              onChange={ this.handleChange }
+            />
+            <input
+              name="email"
+              type="text"
+              value={ email }
+              className="input-login"
+              placeholder="E-mail"
+              data-testid="input-gravatar-email"
+              onChange={ this.handleChange }
+            />
+          </div>
+          <div className="context-button">
+          <Link to="/trivia">
           <button
             type="button"
             data-testid="btn-play"
+            className="btn-play"
             disabled={ !this.validateLogin() }
             onClick={ this.handleClick }
-          >
+            >
             Play
-          </button>
-        </Link>
+            </button>
+            </Link>
+            <SettingsButton />
+          </div>
+        </div>
       </div>
     );
   }

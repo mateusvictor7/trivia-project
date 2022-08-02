@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { setQuestions } from '../Actions/setQuestions';
 import '../Styles/GameQuestionsStyle.css';
+import Loading from './Loading';
 
 class GameQuestions extends Component {
   constructor(props) {
@@ -159,23 +160,24 @@ class GameQuestions extends Component {
     const { questionNumber, time, answerClicked, redirect } = this.state;
     if (loading) {
       fetchQuestions(token);
-      return <h3>Loading</h3>;
+      return <Loading />;
     }
     if (redirect) return <Redirect to="/feedback" />;
     this.createStore();
     return (
-      <div>
-        <h2>Pergunta</h2>
-        <h3>
+      <div className="form-group">
+        {/* <h2>Pergunta</h2> */}
+        <h3 className="timer">
           Tempo:
           { time }
         </h3>
-        <p data-testid="question-category">
+        <p data-testid="question-category" className="question-category">
           Categoria:
           {questions && this.decode(questions[questionNumber].category)}
         </p>
         <p
           data-testid="question-text"
+          className="question-text"
         >
           {questions && this.decode(questions[questionNumber].question)}
         </p>
@@ -190,6 +192,7 @@ class GameQuestions extends Component {
             type="button"
             onClick={ this.handleNext }
             data-testid="btn-next"
+            className="btn-next"
           >
             Proxima
           </button>
